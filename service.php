@@ -35,8 +35,7 @@ if (isset($_REQUEST["unit"])){
     } else if ($unit == "m"){
         $a->group($a->expr("date_format(dat, '%Y%m')"));
     }
-    $r = $a->select();
-    foreach ($r as $row){
+    foreach ($a as $row){
         $out[] = [strtotime($row["dat"])*1000, (float)$row["bid"], (float)$row["ask"]];
     }
     $response = ["unit" => $unit, "values" => $out, "from" => $from, "to" => $to]; 
